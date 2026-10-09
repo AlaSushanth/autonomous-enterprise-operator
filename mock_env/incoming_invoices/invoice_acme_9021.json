@@ -1,0 +1,11 @@
+{
+  "invoice_number": "INV-9021",
+  "vendor": "Acme Logistics Corp",
+  "purchase_order": "PO-108",
+  "total_amount": 750.00,
+  "payment_terms": "Immediate",
+  "due_date": "2026-10-15",
+  "line_items": [
+    {"description": "Regional Freight Delivery", "quantity": 1, "unit_price": 750.00}
+  ]
+}

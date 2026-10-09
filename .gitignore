@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Environment Variables
+.env
+.env.local
+
+# Database
+mock_env/erp.db
+
+# Evidence Artifacts & Screenshots (keep directory structure)
+evidence/screenshot_*.png
+evidence/audit_evidence_pack.json
+evidence/audit_evidence_report.md
+!evidence/.gitkeep
+
+# Testing & IDEs
+.pytest_cache/
+.vscode/
+.idea/
+*.log

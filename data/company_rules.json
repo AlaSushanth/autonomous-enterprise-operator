@@ -1,0 +1,14 @@
+[
+  {
+    "rule_id": "RULE-01",
+    "category": "APPROVAL_POLICY",
+    "condition": "invoice_amount < 1000.0",
+    "instruction": "Auto-approve without human intervention if PO is valid."
+  },
+  {
+    "rule_id": "RULE-02",
+    "category": "APPROVAL_POLICY",
+    "condition": "invoice_amount >= 1000.0",
+    "instruction": "Enforce Human-in-the-Loop manager approval with diff preview."
+  }
+]
