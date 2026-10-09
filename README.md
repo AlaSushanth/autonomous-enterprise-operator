@@ -6,11 +6,20 @@
 
 ---
 
-## 🏗️ Architecture Overview
+### The 8-Step Autonomous Execution Cycle:
 
-The `centra-operator` runtime implements a decoupled, state-machine-driven autonomous operator designed for enterprise workflows. Rather than treating an agent as a simple chatbot or unconstrained LLM loop, this architecture enforces a strict loop:
+**Goal** ➔ **Context & Plan** ➔ **Policy Gate (HITL)** ➔ **Execute** ➔ **Observe** ➔ **Self-Heal** ➔ **Verify** ➔ **Evidence**
 
-$$\text{Goal} \longrightarrow \text{Context \& Plan} \longrightarrow \text{Policy Gate} \longrightarrow \text{Execute} \longrightarrow \text{Observe} \longrightarrow \text{Self-Heal} \longrightarrow \text{Verify} \longrightarrow \text{Evidence}$$
+| Step | Stage Name | What Happens |
+| :---: | :--- | :--- |
+| **1** | **Goal** | Receives natural language objective (*"Process incoming vendor invoices and submit to ERP"*). |
+| **2** | **Context & Plan** | Ingests invoice files, checks PO budgets, and plans the sequence of actions. |
+| **3** | **Policy Gate** | Auto-approves small bills (< $1,000) or intercepts high-value bills (≥ $1,000) for human approval. |
+| **4** | **Execute** | Navigates the ERP web portal via Playwright using semantic AXTree element locators. |
+| **5** | **Observe** | Inspects page DOM responses, status banners, and error messages. |
+| **6** | **Self-Heal** | If a submission fails (e.g. missing address), re-evaluates source metadata and auto-recovers. |
+| **7** | **Verify** | Independently queries the SQLite database to confirm record insertion and amount accuracy. |
+| **8** | **Evidence** | Emits an audit report with before/after state diffs, database assertions, and screenshot proofs. |
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
