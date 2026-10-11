@@ -1,8 +1,6 @@
 # CentrAlign AI — Autonomous Enterprise Operator (`centra-operator`)
 
-> **Founding Engineer Technical Submission**  
-> Candidate: Autonomous Company Operator Prototype  
-> Submission Target: **CentrAlign AI Engineering Hiring**
+
 
 ---
 
