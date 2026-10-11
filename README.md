@@ -148,7 +148,12 @@ centra-operator/
 * **Single-Process Execution:** Long-horizon workflows run in a single process. In high-scale production, process restarts require a distributed durable execution engine (e.g. Temporal.io) to resume from exact checkpoints.
 * **Obfuscated Desktop UI:** While web applications are natively supported via AXTree/DOM, native desktop applications without accessibility trees would require a hybrid multi-modal coordinate-grounding model.
 
-### 5. If you had another 2 weeks, what would you build/change next?
+### 5. What are the key assumptions made while building the solution?
+* **Local Sandbox Network:** Assumed the target enterprise ERP is accessible locally (`http://127.0.0.1:8000`) or within an internal network/VPC without third-party CAPTCHAs.
+* **Semi-Structured Document Inputs:** Assumed incoming vendor invoices arrive as JSON/PDF structured documents with identifiable key metadata (invoice number, vendor name, amount, purchase order reference).
+* **Deterministic Policy Limits:** Assumed financial risk can be bounded by clear deterministic thresholds (e.g., transactions $\ge \$1,000$ mandate human authorization, whereas smaller amounts follow pre-approved operational workflows).
+
+### 6. If you had another 2 weeks, what would you build/change next?
 1. **Durable Task Orchestration:** Integrate **Temporal.io** or **DBOS** to make agent workflows durable, replayable, and horizontally scalable across distributed worker pools.
 2. **Hybrid Vision Grounding:** Combine AXTree with multi-modal coordinate click/type capabilities to operate non-web legacy desktop applications.
 3. **Graph-Based Organizational Memory:** Upgrade the persistent memory store into a combined Vector + Knowledge Graph store to index complex enterprise operating procedures.
