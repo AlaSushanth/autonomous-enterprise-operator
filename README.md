@@ -125,36 +125,4 @@ centra-operator/
 
 ---
 
-## 📋 Evaluation Questionnaire Responses
 
-### 1. What parts of your system are genuinely autonomous?
-* **Multi-Step Goal Decomposition:** Autonomously scans input directories, parses varied JSON/document formats, matches corresponding purchase orders, and orchestrates actions across files, databases, and web browsers.
-* **Semantic DOM Discovery:** Discovers and interacts with form controls on the fly using runtime AXTree mapping rather than rigid scraping scripts.
-* **Self-Healing Loop:** Automatically catches form validation errors on the webpage, re-evaluates file context for missing fields, and completes submissions without human intervention.
-* **Stopping & Completion Logic:** Assesses ground-truth status and decides when the global objective has been fulfilled.
-
-### 2. What is currently hardcoded or manually configured?
-* **Policy Thresholds:** Operational limits (e.g. `$1,000` approval threshold) are declared in policy configuration.
-* **Tool Schemas:** Atomic action definitions (`BROWSE`, `FILL_FORM`, `QUERY_DB`) are strictly typed to enforce safety boundaries.
-* **Environment Endpoints:** Base URLs and database paths are configured via environment parameters.
-
-### 3. What models, frameworks, APIs, and libraries did you use?
-* **Language & Runtime:** Python 3.11 with Pydantic for strict schema contracts.
-* **Browser Automation:** Playwright for headless/headful browser automation and visual capture.
-* **Backend & Mock ERP:** FastAPI + Uvicorn + SQLite3.
-* **CLI & Telemetry:** Rich console for structured human-in-the-loop interactions and execution tables.
-
-### 4. What is the biggest technical limitation of your current solution?
-* **Single-Process Execution:** Long-horizon workflows run in a single process. In high-scale production, process restarts require a distributed durable execution engine (e.g. Temporal.io) to resume from exact checkpoints.
-* **Obfuscated Desktop UI:** While web applications are natively supported via AXTree/DOM, native desktop applications without accessibility trees would require a hybrid multi-modal coordinate-grounding model.
-
-### 5. What are the key assumptions made while building the solution?
-* **Local Sandbox Network:** Assumed the target enterprise ERP is accessible locally (`http://127.0.0.1:8000`) or within an internal network/VPC without third-party CAPTCHAs.
-* **Semi-Structured Document Inputs:** Assumed incoming vendor invoices arrive as JSON/PDF structured documents with identifiable key metadata (invoice number, vendor name, amount, purchase order reference).
-* **Deterministic Policy Limits:** Assumed financial risk can be bounded by clear deterministic thresholds (e.g., transactions $\ge \$1,000$ mandate human authorization, whereas smaller amounts follow pre-approved operational workflows).
-
-### 6. If you had another 2 weeks, what would you build/change next?
-1. **Durable Task Orchestration:** Integrate **Temporal.io** or **DBOS** to make agent workflows durable, replayable, and horizontally scalable across distributed worker pools.
-2. **Hybrid Vision Grounding:** Combine AXTree with multi-modal coordinate click/type capabilities to operate non-web legacy desktop applications.
-3. **Graph-Based Organizational Memory:** Upgrade the persistent memory store into a combined Vector + Knowledge Graph store to index complex enterprise operating procedures.
-4. **Sandboxed MicroVM Isolation:** Run browser sessions inside isolated microVMs (Firecracker / Docker) with strict egress filtering for SOC2/HIPAA enterprise compliance.
